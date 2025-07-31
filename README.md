@@ -54,7 +54,7 @@ PrepGenie is a backend-only web application designed to simplify the management 
 ├── pom.xml # Maven configuration
 └── README.md # This file
 
- ``` </pre>
+</pre>
 
 
 
