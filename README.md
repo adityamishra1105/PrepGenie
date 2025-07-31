@@ -37,7 +37,24 @@ PrepGenie is a backend-only web application designed to simplify the management 
 ---
 
 ##  Project Structure
-<pre> ## 📁 Project Structure ``` PrepGenie/ ├── src/ │ └── main/ │ ├── java/ │ │ └── com/ │ │ └── prepgenie/ │ │ ├── controller/ # REST API controllers │ │ ├── model/ # Entity classes │ │ ├── repository/ # JPA Repositories │ │ ├── service/ # Business logic │ │ └── PrepGenieApplication.java │ └── resources/ │ └── application.properties # Config file ├── .gitignore # Ignored files ├── pom.xml # Maven project file └── README.md # You're reading it! ``` </pre>
+<pre>PrepGenie/
+├── src/
+│ └── main/
+│ ├── java/
+│ │ └── com/
+│ │ └── prepgenie/
+│ │ ├── controller/ # REST API controllers
+│ │ ├── model/ # Entity classes
+│ │ ├── repository/ # JPA Repositories
+│ │ ├── service/ # Business logic
+│ │ └── PrepGenieApplication.java
+│ └── resources/
+│ └── application.properties # Configuration
+├── .gitignore # Git ignored files
+├── pom.xml # Maven configuration
+└── README.md # This file
+
+ ``` </pre>
 
 
 
