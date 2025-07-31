@@ -1,6 +1,6 @@
 # PrepGenie - Interview Question Management System 
 
-PrepGenie is a backend-only web application designed to simplify the management and organisation of interview preparation questions. Whether you're a student, job seeker, or mentor, PrepGenie helps you keep track of questions by topic, difficulty level, and role relevance.
+PrepGenie is a backend-only web application designed to simplify the management and organisation of interview preparation questions. Whether you're a student, job seeker, or mentor, PrepGenie helps you keep track of questions by topic, difficulty level, and relevance to your role.
 
 ---
 
@@ -37,23 +37,7 @@ PrepGenie is a backend-only web application designed to simplify the management 
 ---
 
 ##  Project Structure
-PrepGenie/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/
-│       │       └── prepgenie/
-│       │           ├── controller/        # REST API controllers
-│       │           ├── model/             # Entity classes (e.g., Question.java)
-│       │           ├── repository/        # Spring Data JPA repositories
-│       │           ├── service/           # Service layer for business logic
-│       │           └── PrepGenieApplication.java # Main Spring Boot application
-│       └── resources/
-│           └── application.properties     # Spring Boot configuration
-├── .gitignore                              # Git ignored files
-├── pom.xml                                 # Maven dependencies and project config
-└── README.md                               # Project documentation
-
+<pre> ## 📁 Project Structure ``` PrepGenie/ ├── src/ │ └── main/ │ ├── java/ │ │ └── com/ │ │ └── prepgenie/ │ │ ├── controller/ # REST API controllers │ │ ├── model/ # Entity classes │ │ ├── repository/ # JPA Repositories │ │ ├── service/ # Business logic │ │ └── PrepGenieApplication.java │ └── resources/ │ └── application.properties # Config file ├── .gitignore # Ignored files ├── pom.xml # Maven project file └── README.md # You're reading it! ``` </pre>
 
 
 
