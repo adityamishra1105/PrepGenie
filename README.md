@@ -37,20 +37,23 @@ PrepGenie is a backend-only web application designed to simplify the management 
 ---
 
 ##  Project Structure
-prepgenie/
+PrepGenie/
 ├── src/
-│ ├── main/
-│ │ ├── java/com/prepgenie/
-│ │ │ ├── controller/ # REST APIs
-│ │ │ ├── model/ # Entity classes
-│ │ │ ├── repository/ # JPA Repositories
-│ │ │ ├── service/ # Business logic
-│ │ │ └── PrepGenieApplication.java
-│ │ └── resources/
-│ │ └── application.properties
-├── .gitignore
-├── pom.xml
-└── README.md
+│   └── main/
+│       ├── java/
+│       │   └── com/
+│       │       └── prepgenie/
+│       │           ├── controller/        # REST API controllers
+│       │           ├── model/             # Entity classes (e.g., Question.java)
+│       │           ├── repository/        # Spring Data JPA repositories
+│       │           ├── service/           # Service layer for business logic
+│       │           └── PrepGenieApplication.java # Main Spring Boot application
+│       └── resources/
+│           └── application.properties     # Spring Boot configuration
+├── .gitignore                              # Git ignored files
+├── pom.xml                                 # Maven dependencies and project config
+└── README.md                               # Project documentation
+
 
 
 
