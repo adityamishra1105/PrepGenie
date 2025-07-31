@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrepGenie - Question Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label, input, select, textarea {
+            display: block;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 12px;
+        }
+
+        .question-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<h1>PrepGenie - Add Question</h1>
+
+<form id="questionForm">
+    <label>Question Text:</label>
+    <textarea id="questionText" required></textarea>
+
+    <label>Answer:</label>
+    <input type="text" id="answer" required>
+
+    <label>Difficulty:</label>
+    <select id="difficulty">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+
+    <label>Topic:</label>
+    <input type="text" id="topic">
+
+    <label>Role:</label>
+    <input type="text" id="role">
+
+    <label>Type:</label>
+    <input type="text" id="type" value="MCQ">
+
+    <button type="submit">Add Question</button>
+</form>
+
+<h2>All Questions</h2>
+<div id="questionList"></div>
+
+<script>
+    const API_URL = "http://localhost:8082/api/questions";
+
+    async function loadQuestions() {
+        const res = await fetch(API_URL);
+        const questions = await res.json();
+        const list = document.getElementById("questionList");
+        list.innerHTML = "";
+
+        questions.forEach(q => {
+            const div = document.createElement("div");
+            div.className = "question-card";
+            div.innerHTML = `
+                <strong>Q:</strong> ${q.questionText}<br>
+                <strong>Answer:</strong> ${q.answer}<br>
+                <strong>Difficulty:</strong> ${q.difficulty || 'N/A'}<br>
+                <strong>Topic:</strong> ${q.topic || 'N/A'}<br>
+                <strong>Role:</strong> ${q.role || 'N/A'}<br>
+                <strong>Type:</strong> ${q.type || 'N/A'}
+            `;
+            list.appendChild(div);
+        });
+    }
+
+    document.getElementById("questionForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const payload = {
+            questionText: document.getElementById("questionText").value,
+            answer: document.getElementById("answer").value,
+            difficulty: document.getElementById("difficulty").value,
+            topic: document.getElementById("topic").value,
+            role: document.getElementById("role").value,
+            type: document.getElementById("type").value
+        };
+
+        await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        this.reset();
+        loadQuestions();
+    });
+
+    loadQuestions();
+</script>
+</body>
+</html>
