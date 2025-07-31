@@ -58,3 +58,23 @@ PrepGenie is a backend-only web application designed to simplify the management 
 
 
 
+---
+
+## 💡 Future Enhancements
+
+- Add frontend using React or Angular
+- Implement authentication (JWT-based)
+- Export questions as PDF or JSON
+- Admin/User roles
+- Tag-based filtering
+
+---
+
+## 🧪 Local Setup (Run in IntelliJ)
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/adityamishra1105/PrepGenie.git
+
+
+
