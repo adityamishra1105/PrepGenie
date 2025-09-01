@@ -21,16 +21,12 @@ public class GptService {
     public String generateQuestion(String topic, String difficulty, String type, String role) {
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
-
         String prompt = String.format("Generate a %s difficulty %s question on %s for a %s role. Return only the question and answer in simple JSON format like {\"question\":\"...\", \"answer\":\"...\"}", difficulty, type, topic, role);
-
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("model", "gpt-3.5-turbo");
-
         List<Map<String, String>> messages = new ArrayList<>();
         messages.add(Map.of("role", "user", "content", prompt));
         requestBody.put("messages", messages);
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
