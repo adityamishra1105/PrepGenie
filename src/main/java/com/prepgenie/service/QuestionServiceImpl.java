@@ -1,14 +1,14 @@
-package com.prepgenie.service.impl;
+package com.prepgenie.service;
 
 import com.prepgenie.model.Question;
 import com.prepgenie.repository.QuestionRepository;
-import com.prepgenie.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,36 +22,34 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Optional<Question> getQuestionById(Long id) {
+        return questionRepository.findById(id);
+    }
+
+    @Override
     public Question addQuestion(Question question) {
         return questionRepository.save(question);
     }
 
     @Override
-    public List<Question> getAllQuestions() {
-        return questionRepository.findAll();
-    }
+    public Question updateQuestion(Long id, Question updatedQuestion) {
+        Question existingQuestion = questionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found with id: " + id));
 
-    @Override
-    public Question getQuestionById(Long id) {
-        return questionRepository.findById(id).orElse(null);
+        // Update fields (make sure Question class has getters/setters or Lombok @Getter/@Setter)
+        existingQuestion.setQuestionText(updatedQuestion.getQuestionText());
+        existingQuestion.setAnswer(updatedQuestion.getAnswer());
+        existingQuestion.setDifficulty(updatedQuestion.getDifficulty());
+        existingQuestion.setTopic(updatedQuestion.getTopic());
+        existingQuestion.setType(updatedQuestion.getType());
+        existingQuestion.setRole(updatedQuestion.getRole());
+
+        return questionRepository.save(existingQuestion);
     }
 
     @Override
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);
-    }
-
-    @Override
-    public Question updateQuestion(Long id, Question updatedQuestion) {
-        return questionRepository.findById(id).map(q -> {
-            q.setQuestionText(updatedQuestion.getQuestionText());
-            q.setAnswer(updatedQuestion.getAnswer());
-            q.setDifficulty(updatedQuestion.getDifficulty());
-            q.setTopic(updatedQuestion.getTopic());
-            q.setType(updatedQuestion.getType());
-            q.setRole(updatedQuestion.getRole());
-            return questionRepository.save(q);
-        }).orElse(null);
     }
 
     @Override
@@ -73,4 +71,5 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> getByTopicAndDifficulty(String topic, String difficulty) {
         return questionRepository.findByTopicAndDifficulty(topic, difficulty);
     }
+
 }
