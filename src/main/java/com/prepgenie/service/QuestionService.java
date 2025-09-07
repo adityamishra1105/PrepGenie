@@ -5,18 +5,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface QuestionService {
+
+    Page<Question> getAllQuestions(Pageable pageable);
+
+    Optional<Question> getQuestionById(Long id);
+
     Question addQuestion(Question question);
-    List<Question> getAllQuestions(); // optional for non-paginated
-    Page<Question> getAllQuestions(Pageable pageable); // <-- ADD THIS
-    Question getQuestionById(Long id);
+
+    Question updateQuestion(Long id, Question updatedQuestion);
+
     void deleteQuestion(Long id);
-    Question updateQuestion(Long id, Question question);
 
     List<Question> getQuestionsByTopic(String topic);
+
     List<Question> getQuestionsByDifficulty(String difficulty);
+
     List<Question> getQuestionsByRole(String role);
+
     List<Question> getByTopicAndDifficulty(String topic, String difficulty);
 
 }
